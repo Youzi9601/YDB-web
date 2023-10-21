@@ -1,7 +1,7 @@
 //#region 連線道伺服器
 
 const { Client: HostClient } = require('discord-cross-hosting');
-const config = require('../../Config');
+const config = require('./Config');
 
 // 與 Host 連線
 const hostclient = new HostClient({
