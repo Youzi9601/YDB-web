@@ -1,0 +1,121 @@
+<header>
+	<div id="navbar" data-bs-theme="dark">
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid py-1">
+				<a class="logo navbar-brand p-1 me-0 me-lg-2" href="/home">
+					<img
+						src="/public/images/favicon.ico"
+						alt="Logo"
+						width="30"
+						height="30"
+						class="d-inline-block align-text-top"
+					/>
+					Yuza</a
+				>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#mainmenu"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="mainmenu">
+					<ul
+						class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+						style="--bs-scroll-height: 100px"
+					>
+						<li class="nav-item">
+							<a href="#Features" class="nav-link">特色</a>
+						</li>
+						<li class="nav-item">
+							<a href="/home/status" class="nav-link">狀態</a>
+						</li>
+						<li class="nav-item">
+							<a href="/home/commands" class="nav-link navigate"
+								>命令</a
+							>
+						</li>
+						<li class="nav-item dropdown">
+							<a
+								class="nav-link dropdown-toggle"
+								href="#"
+								id="linksdrop"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+								>連結</a
+							>
+							<ul
+								class="dropdown-menu bg-dark"
+								aria-labelledby="linksdrop"
+							>
+								<li>
+									<a
+										class="dropdown-item text-muted"
+										href="/home/invite_bot"
+										>邀請</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item text-muted"
+										href="/home/github"
+										>Github</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item text-muted"
+										href="/home/discord"
+										>支持服務器</a
+									>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<% if (user == undefined) {%>
+					<li class="d-flex me-2 navbar-nav nav-item">
+						<a
+							href="/dashboard/login"
+							class="btn btn-outline-info discord-login"
+							id="discord-login"
+							name="discord-login"
+							>登入</a
+						>
+					</li>
+					<% } else 　{if ( user?.id && user?.avatar &&
+					user?.username)%>
+					<div class="dropdown">
+						<button
+							class="btn btn-dark dropdown-toggle"
+							type="button"
+							id="dropdownMenuButton"
+							data-bs-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+						>
+							<img
+								src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.jpg"
+								alt="User Avatar"
+								class="rounded"
+								style="width: 30px"
+							/>
+							<%= user.username %><%= user.discriminator == 0 ? ''
+							: `#${ user.discriminator }` %>
+						</button>
+						<div
+							class="dropdown-menu"
+							aria-labelledby="dropdownMenuButton"
+						>
+							<a class="dropdown-item" href="/dashboard/logout"
+								>登出</a
+							>
+						</div>
+					</div>
+					<% } %>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>

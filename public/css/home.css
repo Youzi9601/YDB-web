@@ -1,0 +1,7 @@
+@media (max-width: 600px) {
+	/* 手機專用的 CSS 樣式 */
+	header a .logo {
+		display: flex;
+		align-items: center;
+	}
+}

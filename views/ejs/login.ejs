@@ -1,0 +1,68 @@
+<div
+	id="info"
+	data-bs-spy="scroll"
+	data-bs-target="#mainmenu"
+	data-bs-root-margin="0px 0px -40%"
+	data-bs-smooth-scroll="true"
+	class="scrollspy-example bg-body-tertiary rounded-2 bg-dark"
+	tabindex="0"
+>
+	<!-- use -->
+	<% if (!user?.id) { %>
+	<section id="login" class="py-5 bg-dark text-light min-vh-100">
+		<div class="container text-center py-5">
+			<h2 class="text-center mb-3">沒有跳出驗證畫面?</h2>
+			<a
+				href="<% discord_auth_url %>"
+				class="btn btn-primary discord-login"
+				id="discord-login1"
+				name="discord-login"
+			>
+				點我</a
+			>
+		</div>
+	</section>
+
+	<% } %> <% if (flash?.loginSuccess) { %>
+	<section id="login" class="py-5 bg-dark text-light min-vh-100">
+		<div class="container text-center py-5">
+			<h2 class="text-center mb-3">登入成功！可關閉此視窗</h2>
+		</div>
+	</section>
+	<script>
+		var validationResult = true;
+		window.opener.postMessage(
+			{ validated: validationResult },
+			window.location.origin
+		);
+		setTimeout(() => {
+			window.close(); // 關閉彈出視窗
+		}, 3000);
+	</script>
+	<% } %>
+</div>
+<script>
+	/**
+	 * 訊息接收
+	 */
+	//#region 訊息接收
+	// 在主窗口中監聽彈出視窗的訊息
+	window.addEventListener("message", function (event) {
+		if (event.origin !== window.location.origin) {
+			return; // 避免跨站點攻擊
+		}
+
+		// 驗證成功
+		if (event.data.validated) {
+			// 驗證成功，執行主窗口的刷新操作
+			window.location.href = "/dashboard/servers"; // 將此替換為您的目標 URL
+		}
+		// 驗證失敗，並且傳輸問題
+		if (event.data.error) {
+			// 驗證失敗，執行主窗口顯示錯誤訊息
+			if (appendAlert) appendAlert("錯誤", "驗證失敗", "", "error");
+		}
+	});
+	//#endregion
+</script>
+<script src="/public/js/discord/user.js" defer></script>

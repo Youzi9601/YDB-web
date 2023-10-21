@@ -1,0 +1,172 @@
+<div
+	id="info"
+	data-bs-spy="scroll"
+	data-bs-target="#mainmenu"
+	data-bs-root-margin="0px 0px -40%"
+	data-bs-smooth-scroll="true"
+	class="scrollspy-example bg-body-tertiary rounded-2 min-vh-100"
+	tabindex="0"
+>
+	<!-- Info -->
+
+	<section class="bg-dark text-light text-center py-5 mt-5">
+		<div class="container">
+			<div class="d-flex">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="pt-5"></div>
+						<h1>
+							<span class="text-info">Yuza</span>
+							Bot
+						</h1>
+						<p>
+							Yuza 是一個開源的集成機器人，可以協助您管理伺服器。
+							機器人程序和您需要的一切都在其中。
+						</p>
+						<a class="btn btn-info" href="/home/invite_bot"
+							>邀請機器人</a
+						>
+						<a class="m-2 btn btn-light" href="/home/discord"
+							>支持服務器</a
+						>
+					</div>
+					<div class="col-md-6">
+						<img
+							class="img-fluid w-50"
+							src="/public/images/Yuza.png"
+							alt=""
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features -->
+
+	<section id="Features" class="py-5">
+		<div class="container">
+			<h2 class="text-center mb-4">特色</h2>
+			<div class="row text-center">
+				<div class="col-sm">
+					<div class="card bg-dark text-light mb-3">
+						<div class="h1 mt-3">
+							<i class="bi bi-clock-history"></i>
+						</div>
+						<div class="card-body text-center">
+							<h4 class="card-title text-info">使用方便</h4>
+							<p class="card-text">
+								有著簡單明瞭的指令操作，以及選項按鈕，符合人性化設計的直覺式操作。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="card bg-dark text-light mb-3">
+						<div class="h1 mt-3">
+							<i class="bi bi-capslock-fill"></i>
+						</div>
+						<div class="card-body text-center">
+							<h4 class="card-title text-info">24/7 在線</h4>
+							<p class="card-text">
+								這個機器人隨時在線，不必擔心突然離線蒸發。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="card bg-dark text-light mb-3">
+						<div class="h1 mt-3">
+							<i class="bi bi-folder2-open"></i>
+						</div>
+						<div class="card-body text-center">
+							<h4 class="card-title text-info">開源的</h4>
+							<p class="card-text">
+								這是一個開源的機器人，詳情都可以在Github上找到！
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Status -->
+
+	<section id="Status" class="py-5 bg-dark text-light">
+		<div class="container">
+			<div class="py-2 text-center">
+				<h2>狀態</h2>
+			</div>
+			<div
+				class="row align-items-center justify-content-center text-center -5"
+			>
+				<div class="col">
+					<img
+						src="/public/images/Status.svg"
+						alt=""
+						class="img-fluid d-none d-md-block"
+					/>
+				</div>
+				<div class="col-sm p-5 h1">
+					<i class="bi bi-hdd-stack text-primary"></i>
+					<h6></h6>
+					<h3 id="server_count">
+						<% if (totalServers) { %> <%= totalServers %> <% } else
+						{ %> ? <% } %>
+					</h3>
+					<h5>伺服器</h5>
+				</div>
+				<div class="col-sm p-5 h1">
+					<i class="bi bi bi-people-fill text-primary"></i>
+					<h6></h6>
+					<h3 id="user_count">
+						<% if (totalMembers) { %> <%= totalMembers %> <% } else
+						{ %> ? <% } %>
+					</h3>
+					<h5>使用者</h5>
+				</div>
+				<div class="col-sm p-5 h1">
+					<i class="bi bi bi-hash text-primary"></i>
+					<h6></h6>
+					<h3 id="channel_count">
+						<% if (totalChannels) { %> <%= totalChannels %> <% }
+						else { %> ? <% } %>
+					</h3>
+					<h5>頻道</h5>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- use -->
+	<% if (user) {%>
+	<section id="use" class="py-5">
+		<div class="container text-center">
+			<h2 class="text-center mb-3">伺服器</h2>
+			<div class="cards">
+				<div class="card" style="width: 18rem">
+					<img src="..." class="card-img-top" alt="..." />
+					<div class="card-body">
+						<h5 class="card-title">支援伺服器</h5>
+						<p class="card-text">
+							嗨！<%= user.username
+							%>，這是官方的伺服器，如果有什麼疑問或是想法可以加入這裡喔！
+						</p>
+						<a href="#" class="btn btn-primary">加入</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<% } else {%>
+	<section id="login" class="py-5">
+		<div class="container text-center py-5">
+			<h2 class="text-center mb-3">立即開始！</h2>
+			<a href="/dashboard/login" class="btn btn-primary discord-login"
+				>登入 Discord</a
+			>
+		</div>
+	</section>
+	<% }%>
+</div>

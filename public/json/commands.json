@@ -1,0 +1,95 @@
+[
+    {
+        "title": "Moderation Commands",
+        "commands": [
+            {
+                "name": "/ban",
+                "description": "ban a member",
+                "advanced": false,
+                "usage": [
+                    "/ban @member"
+                ]
+            },
+            {
+                "name": "/kick",
+                "description": "kick a member",
+                "advanced": false,
+                "usage": [
+                    "/kick @member"
+                ]
+            },
+            {
+                "name": "/mute",
+                "description": "mute a member",
+                "advanced": false,
+                "usage": [
+                    "/mute @member"
+                ]
+            }
+        ]
+    },
+    {
+        "title": "General Commands",
+        "commands": [
+            {
+                "name": "/help",
+                "description": "Bot's help menu",
+                "advanced": false,
+                "usage": [
+                    "/help",
+                    "/help command:ban"
+                ]
+            },
+            {
+                "name": "/ping",
+                "description": "Get bot's host server status & latency",
+                "advanced": false,
+                "usage": [
+                    "/ping"
+                ]
+            },
+            {
+                "name": "/invite",
+                "description": "Invite bot to your server",
+                "advanced": false,
+                "usage": [
+                    "/invite"
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Leveling Commands",
+        "commands": [
+            {
+                "name": "/leaderboard",
+                "description": "Get your servers leaderboards",
+                "advanced": false,
+                "usage": [
+                    "/leaderboard"
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Premium Commands",
+        "commands": [
+            {
+                "name": "/reactionrole",
+                "description": "start the setup process for creating a reaction role",
+                "advanced": true,
+                "usage": [
+                    "/reactionrole"
+                ]
+            },
+            {
+                "name": "/slowmode",
+                "description": "add slowmode for a channel",
+                "advanced": true,
+                "usage": [
+                    "/slowmode :time"
+                ]
+            }
+        ]
+    }
+]
