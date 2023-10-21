@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { request } = require("undici");
-const config = require('../../../Config')
+const config = require('../Config')
 // home
 router.get('/discord', async (req, res) => {
     // console.log(req)

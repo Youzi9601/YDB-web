@@ -17,7 +17,8 @@ hostclient
             : ''
     )
     .on('ready', async d => {
-        console.log(`已成功連線！註冊名稱為 ${ d.id } `)
+        console.log(`已成功連線！註冊名稱為 ${ d.id } `);
+        // console.log(`WEB | 已連接到伺服器，延遲：${ await hostclient.ping() }ms`);
         if (process.send)
             process.send('ready');
     });
@@ -26,7 +27,27 @@ hostclient
 hostclient
     .connect()
     .then(async (hc) => {
-        console.log(`WEB | 已連接到伺服器，延遲：${ await hc.ping() }ms`);
+        // console.debug(hc)
+        const delay = await hc.ping();
+        console.log(`WEB | 已連接到伺服器，延遲：${ delay }ms`);
+
+        await hostclient.request({
+            database: {
+                dataType: 'Client',
+                name: 'status',
+                table: 'statistics',
+                type: 'get',
+                key: `total`,
+            }
+        }).then((data) => {
+            console.log(data);
+            total = data.data;
+            module.exports.total = total;
+        });
+    })
+    .catch(e => {
+        console.error(e);
+        process.exit(1);
     });
 //#endregion
 
