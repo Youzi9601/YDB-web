@@ -3,12 +3,22 @@
 const { Client: HostClient } = require('discord-cross-hosting');
 const config = require('./Config');
 
+let replit_mode = false;
+try {
+    require('./.upm');
+    require('./.replit');
+    replit_mode = true;
+}
+catch (e) {
+    replit_mode = false;
+}
 // 與 Host 連線
 const hostclient = new HostClient({
     agent: config.web.agent,
     authToken: config.global.authToken,
     host: config.hosting.host,
     port: config.hosting.port,
+    handshake: replit_mode,
 });
 hostclient
     .on('debug', m =>
@@ -17,7 +27,7 @@ hostclient
             : ''
     )
     .on('ready', async d => {
-        console.log(`已成功連線！註冊名稱為 ${ d.id } `);
+        console.log(`已成功連線！註冊名稱為 ${d.id} `);
         // console.log(`WEB | 已連接到伺服器，延遲：${ await hostclient.ping() }ms`);
         if (process.send)
             process.send('ready');
@@ -29,7 +39,7 @@ hostclient
     .then(async (hc) => {
         // console.debug(hc)
         const delay = await hc.ping();
-        console.log(`WEB | 已連接到伺服器，延遲：${ delay }ms`);
+        console.log(`WEB | 已連接到伺服器，延遲：${delay}ms`);
 
         await hostclient.request({
             database: {
@@ -70,7 +80,7 @@ app.use(require('express-ejs-layouts'));
 app.use(cookieParser());
 app.use(
     session({
-        secret: `${ new Date().toDateString }`,
+        secret: `${new Date().toDateString}`,
         name: "user", // optional
         saveUninitialized: true,
         resave: false,
@@ -86,7 +96,7 @@ app.use(
 );
 // 設定伺服器路由
 app.use((req, res, next) => {
-    res.locals.flash = req.session.flash;
+    res.locals.flash = req.session?.flash;
     next();
 })
 // 路由
@@ -105,7 +115,7 @@ app
 
 // 啟動伺服器
 app.listen(port, async () => {
-    console.log(`應用程式正在運行，位於 http://${ config.web.host }:${ config.web.port }`);
+    console.log(`應用程式正在運行，位於 http://${config.web.host}:${config.web.port}`);
 });
 
 
